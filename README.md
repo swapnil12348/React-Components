@@ -1,210 +1,314 @@
-# React Component Development Assignment
+# React Component Library
 
-This project contains two reusable React components: `InputField` and `DataTable`, built with React, TypeScript, TailwindCSS, and documented with Storybook.
+A collection of flexible, theme-aware React components built with modern development practices and comprehensive tooling.
 
-## Tech Stack
+## 🌟 Overview
 
--   **React:** UI Library
--   **TypeScript:** Static Typing
--   **TailwindCSS:** Utility-first CSS Framework
--   **Storybook:** Component Documentation and Workshop
--   **Vite:** Build Tool
--   **Vitest & React Testing Library:** Testing
--   **CVA (Class Variance Authority):** For creating a flexible, type-safe variant system.
+This project provides two highly reusable React components - `InputField` and `DataTable` - designed for scalability, type safety, and developer experience. Built with React, TypeScript, and TailwindCSS, each component offers extensive customization options while maintaining consistency and accessibility.
 
-## Project Structure
+## 🛠️ Tech Stack
 
-The project uses a feature-sliced approach where each component lives in its own directory under `src/components`. This directory contains the component itself, its stories, and its tests, promoting scalability and maintainability.
+| Technology | Purpose |
+|------------|---------|
+| **React** | UI Library |
+| **TypeScript** | Static typing and enhanced developer experience |
+| **TailwindCSS** | Utility-first CSS framework for consistent styling |
+| **CVA (Class Variance Authority)** | Type-safe variant system for component styling |
+| **Storybook** | Component documentation and interactive development |
+| **Vite** | Fast build tool and development server |
+| **Vitest** | Unit testing framework |
+| **React Testing Library** | Component testing utilities |
+
+## 📁 Project Structure
+
+The project follows a feature-sliced architecture where each component is self-contained with its implementation, stories, and tests:
 
 ```
 src/components/
 ├── DataTable/
-│   ├── DataTable.tsx
-│   ├── DataTable.stories.tsx
-│   └── DataTable.test.tsx
+│   ├── DataTable.tsx          # Component implementation
+│   ├── DataTable.stories.tsx  # Storybook stories
+│   └── DataTable.test.tsx     # Unit tests
 └── InputField/
     ├── InputField.tsx
     ├── InputField.stories.tsx
     └── InputField.test.tsx
 ```
 
-## Approach Description
+## 🚀 Quick Start
 
--   **InputField:** This component was built using `cva` to manage its numerous visual variants (`filled`, `outlined`, `ghost`), sizes, and states (`invalid`, `disabled`). This approach keeps the styling logic clean, declarative, and easily extensible. It also includes optional features like a password visibility toggle and a clear button.
+### Installation
+```bash
+npm install
+```
 
--   **DataTable:** This is a generic and type-safe component. It uses React hooks (`useState`, `useMemo`) to manage internal state for sorting and row selection. `useMemo` is used to optimize performance by only re-sorting the data when the data itself or the sort configuration changes.
+### Development
+```bash
+# Start development server
+npm run dev
 
-## Available Scripts
+# Launch Storybook (recommended for component development)
+npm run storybook
+```
 
-### `npm install`
-Installs all the required dependencies.
+### Testing
+```bash
+# Run unit tests
+npm test
+```
 
-### `npm run dev`
-Runs the app in development mode.
+### Build
+```bash
+# Build for production
+npm run build
 
-### `npm run storybook`
-Starts the Storybook development server. This is the primary way to view and develop the components.
-
-### `npm run build-storybook`
-Builds the static Storybook site for deployment.
-
-### `npm test`
-Runs the unit tests using Vitest.
-
-# Component Library
-
-A collection of flexible, theme-aware React components built for modern applications.
-
-## 📖 Documentation
-
-The primary, interactive documentation lives in our deployed Storybook. This README provides a summary of each component's props and basic usage examples.
+# Build Storybook for deployment
+npm run build-storybook
+```
 
 ## 🧩 Components
 
 ### InputField
 
-A flexible and theme-aware input component with built-in validation states, icons, and variants.
+A comprehensive input component with built-in validation, loading states, and multiple visual variants.
 
-#### Props
+**Key Features:**
+- Multiple variants (`filled`, `outlined`, `ghost`)
+- Size variations (`sm`, `md`, `lg`)
+- Built-in validation states and error handling
+- Optional clear button and loading spinner
+- Password visibility toggle support
+- Fully accessible with ARIA attributes
+
+#### Props Reference
 
 | Prop | Type | Description | Default |
 |------|------|-------------|---------|
-| `label` | `string` | Text that appears above the input field | `undefined` |
-| `value` | `string` | The current value of the input | `undefined` |
-| `onChange` | `(e: ChangeEvent) => void` | Callback function fired when input value changes | `undefined` |
-| `placeholder` | `string` | Placeholder text when input is empty | `undefined` |
-| `helperText` | `string` | Helper text that appears below the input | `undefined` |
-| `errorMessage` | `string` | Error message when `invalid` is true. Overrides `helperText` | `undefined` |
-| `type` | `string` | HTML input type (e.g., 'text', 'password', 'email') | `'text'` |
-| `disabled` | `boolean` | Disables the input when true | `false` |
-| `invalid` | `boolean` | Styles input to indicate error state | `false` |
-| `loading` | `boolean` | Shows loading spinner and disables input | `false` |
-| `variant` | `'filled' \| 'outlined' \| 'ghost'` | Visual style of the input field | `'outlined'` |
-| `size` | `'sm' \| 'md' \| 'lg'` | Size of the input field | `'md'` |
-| `showClearButton` | `boolean` | Displays 'X' button to clear input when it has value | `false` |
-| `onClear` | `() => void` | Callback fired when clear button is clicked | `undefined` |
+| `label` | `string` | Label text displayed above the input | `undefined` |
+| `value` | `string` | Controlled input value | `undefined` |
+| `onChange` | `(e: ChangeEvent<HTMLInputElement>) => void` | Value change handler | `undefined` |
+| `placeholder` | `string` | Placeholder text for empty input | `undefined` |
+| `helperText` | `string` | Helper text below the input | `undefined` |
+| `errorMessage` | `string` | Error message (overrides helperText when invalid) | `undefined` |
+| `type` | `string` | HTML input type | `'text'` |
+| `disabled` | `boolean` | Disable the input | `false` |
+| `invalid` | `boolean` | Show error state styling | `false` |
+| `loading` | `boolean` | Show loading spinner and disable input | `false` |
+| `variant` | `'filled' \| 'outlined' \| 'ghost'` | Visual style variant | `'outlined'` |
+| `size` | `'sm' \| 'md' \| 'lg'` | Component size | `'md'` |
+| `showClearButton` | `boolean` | Show clear button when input has value | `false` |
+| `onClear` | `() => void` | Clear button click handler | `undefined` |
 
 ### DataTable
 
-A generic, theme-aware data table with built-in support for sorting, row selection, loading, and empty states.
+A powerful, generic data table component with sorting, selection, and loading states.
 
-#### Props
+**Key Features:**
+- Type-safe generic implementation
+- Built-in sorting functionality
+- Row selection with checkboxes
+- Loading and empty states
+- Custom cell rendering
+- Optimized performance with `useMemo`
+
+#### Props Reference
 
 | Prop | Type | Description | Default |
 |------|------|-------------|---------|
-| `data` | `T[]` | Array of data objects to display. Each must have unique `id` | `[]` |
-| `columns` | `Column<T>[]` | Array of column configuration objects | `[]` |
-| `loading` | `boolean` | Displays loading state in table body | `false` |
-| `selectable` | `boolean` | Renders checkboxes for row selection | `false` |
-| `onRowSelect` | `(selectedRows: T[]) => void` | Callback fired when row selection changes | `undefined` |
+| `data` | `T[]` | Array of data objects (must have unique `id`) | `[]` |
+| `columns` | `Column<T>[]` | Column configuration array | `[]` |
+| `loading` | `boolean` | Show loading state | `false` |
+| `selectable` | `boolean` | Enable row selection | `false` |
+| `onRowSelect` | `(selectedRows: T[]) => void` | Selection change handler | `undefined` |
 
-#### Column Object Shape
+#### Column Configuration
 
-| Key | Type | Description | Required |
-|-----|------|-------------|----------|
-| `key` | `string` | Unique string key for the column | ✅ |
-| `title` | `string` | Text to display in column header | ✅ |
-| `dataIndex` | `keyof T` | Key of data object whose value displays in column cells | ✅ |
-| `sortable` | `boolean` | Makes column header clickable to sort data | ❌ |
-| `render` | `(value, record) => ReactNode` | Custom render function for cell content | ❌ |
+| Property | Type | Description | Required |
+|----------|------|-------------|----------|
+| `key` | `string` | Unique column identifier | ✅ |
+| `title` | `string` | Column header text | ✅ |
+| `dataIndex` | `keyof T` | Data object key to display | ✅ |
+| `sortable` | `boolean` | Enable column sorting | ❌ |
+| `render` | `(value: any, record: T) => ReactNode` | Custom cell renderer | ❌ |
 
-## 🚀 Usage Example
+## 💡 Usage Examples
+
+### Basic InputField Implementation
 
 ```tsx
 import { useState } from 'react';
 import { InputField } from './components/InputField/InputField';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  return (
+    <form>
+      <InputField
+        label="Email Address"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        invalid={!!errors.email}
+        errorMessage={errors.email}
+        variant="outlined"
+        size="md"
+      />
+      
+      <InputField
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter your password"
+        invalid={!!errors.password}
+        errorMessage={errors.password}
+        variant="outlined"
+        size="md"
+      />
+    </form>
+  );
+}
+```
+
+### Advanced DataTable Implementation
+
+```tsx
+import { useState } from 'react';
 import { DataTable, Column } from './components/DataTable/DataTable';
 
-// Define the type for our data
-interface User {
+interface Employee {
   id: number;
   name: string;
   email: string;
-  role: 'Admin' | 'User';
+  department: string;
+  salary: number;
+  status: 'Active' | 'Inactive';
 }
 
-// Sample data and column definitions
-const sampleUsers: User[] = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin' },
-  { id: 2, name: 'Bob Williams', email: 'bob@example.com', role: 'User' },
-  { id: 3, name: 'Charlie Brown', email: 'charlie@example.com', role: 'User' },
-];
+function EmployeeManager() {
+  const [employees] = useState<Employee[]>([
+    {
+      id: 1,
+      name: 'Alice Johnson',
+      email: 'alice@company.com',
+      department: 'Engineering',
+      salary: 95000,
+      status: 'Active'
+    },
+    // ... more data
+  ]);
 
-const userColumns: Column<User>[] = [
-  {
-    key: 'name',
-    title: 'Full Name',
-    dataIndex: 'name',
-    sortable: true,
-  },
-  {
-    key: 'email',
-    title: 'Email Address',
-    dataIndex: 'email',
-  },
-  {
-    key: 'role',
-    title: 'Role',
-    dataIndex: 'role',
-    render: (role) => (
-      <span style={{ color: role === 'Admin' ? 'crimson' : 'royalblue' }}>
-        {role}
-      </span>
-    ),
-  },
-];
-
-function App() {
-  const [inputValue, setInputValue] = useState('');
+  const columns: Column<Employee>[] = [
+    {
+      key: 'name',
+      title: 'Employee Name',
+      dataIndex: 'name',
+      sortable: true,
+    },
+    {
+      key: 'email',
+      title: 'Email',
+      dataIndex: 'email',
+    },
+    {
+      key: 'department',
+      title: 'Department',
+      dataIndex: 'department',
+      sortable: true,
+    },
+    {
+      key: 'salary',
+      title: 'Salary',
+      dataIndex: 'salary',
+      sortable: true,
+      render: (salary) => `$${salary.toLocaleString()}`,
+    },
+    {
+      key: 'status',
+      title: 'Status',
+      dataIndex: 'status',
+      render: (status) => (
+        <span
+          className={`px-2 py-1 rounded-full text-xs font-medium ${
+            status === 'Active' 
+              ? 'bg-green-100 text-green-800' 
+              : 'bg-red-100 text-red-800'
+          }`}
+        >
+          {status}
+        </span>
+      ),
+    },
+  ];
 
   return (
-    <div style={{ 
-      padding: '2rem', 
-      fontFamily: 'sans-serif', 
-      maxWidth: '800px', 
-      margin: 'auto' 
-    }}>
-      <h1>Component Demo</h1>
-
-      <section style={{ marginBottom: '2rem' }}>
-        <h2>InputField Demo</h2>
-        <InputField
-          label="Enter Your Name"
-          placeholder="e.g., Jane Doe"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          helperText="This is a controlled component."
-          showClearButton
-          onClear={() => setInputValue('')}
-        />
-      </section>
-
-      <section>
-        <h2>DataTable Demo</h2>
-        <DataTable
-          data={sampleUsers}
-          columns={userColumns}
-          selectable
-          onRowSelect={(selected) => {
-            console.log('Selected rows:', selected);
-          }}
-        />
-      </section>
-    </div>
+    <DataTable
+      data={employees}
+      columns={columns}
+      selectable
+      onRowSelect={(selected) => {
+        console.log('Selected employees:', selected);
+      }}
+    />
   );
 }
-
-export default App;
 ```
 
-## 🎨 Features
+## 🎯 Design Philosophy
 
-- **Theme-aware**: Components adapt to your application's design system
-- **TypeScript support**: Full type safety with TypeScript definitions
-- **Flexible styling**: Multiple variants and sizes for different use cases
-- **Accessibility**: Built with accessibility best practices in mind
-- **Modern React**: Uses modern React patterns and hooks
+### Component Architecture
+- **Single Responsibility**: Each component focuses on one primary function
+- **Composition over Inheritance**: Components are designed to work together seamlessly
+- **Controlled Components**: All stateful interactions are managed by parent components
 
-## 📚 Additional Resources
+### Performance Optimizations
+- **Memoized Computations**: DataTable uses `useMemo` for expensive operations
+- **Efficient Re-renders**: Components only re-render when necessary props change
+- **Bundle Optimization**: Tree-shakeable exports and minimal dependencies
 
-For more detailed examples, interactive demos, and advanced usage patterns, visit our Storybook documentation.
+### Developer Experience
+- **Type Safety**: Full TypeScript support with comprehensive type definitions
+- **Storybook Integration**: Interactive documentation and component playground
+- **Testing Coverage**: Comprehensive unit tests for all component features
+- **Consistent APIs**: Predictable prop patterns across all components
+
+## 🧪 Testing Strategy
+
+Components are thoroughly tested using Vitest and React Testing Library, covering:
+
+- **Unit Tests**: Individual component behavior and prop handling
+- **Integration Tests**: Component interactions and state management
+- **Accessibility Tests**: ARIA attributes and keyboard navigation
+- **Visual Regression**: Storybook visual testing (when configured)
+
+## 📚 Documentation
+
+### Storybook
+The primary documentation lives in Storybook, featuring:
+- Interactive component playground
+- Comprehensive prop controls
+- Usage examples and best practices
+- Accessibility guidelines
+
+### API Reference
+Each component includes detailed TypeScript interfaces and JSDoc comments for IDE support.
+
+## 🤝 Contributing
+
+1. Follow the established project structure
+2. Maintain TypeScript strict mode compliance
+3. Add comprehensive Storybook stories for new components
+4. Include unit tests for all functionality
+5. Update documentation for API changes
+
+## 📄 License
+
+This project is part of a React Component Development Assignment and is intended for educational purposes.
+
+---
+
+Built with ❤️ using modern React development practices
